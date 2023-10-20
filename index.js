@@ -110,6 +110,14 @@ async function run() {
         res.send(result);
     });
 
+    // match cart email
+    app.get('/carts/:email', async (req, res) => {
+        const email = req.params.email;
+        const query = { userEmail: email }
+        const result = await cartsCollection.find(query).toArray();
+        res.send(result);
+    })
+
     // cart delete
     app.delete("/carts/:id", async(req, res) =>{
         const id = req.params.id;
